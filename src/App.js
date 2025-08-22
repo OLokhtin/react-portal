@@ -1,25 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
+import Counter from "./components/Counter";
+import ClassCounter from "./components/ClassCounter";
+import './styles/App.css';
+import PostItem from "./components/PostItem";
 
 function App() {
-    const [likes, setLikes] = useState(5);
-
-    function increment() {
-        setLikes(likes + 1);
-        console.log(likes);
-    }
-
-    function decrement() {
-        setLikes(likes - 1);
-        console.log(likes);
-    }
     return (
     <div className="App">
-        <h1>{likes}</h1>
-        <button onClick={increment}> Increment</button>
-        <button onClick={decrement}>Decrement</button>
+        <PostItem post={{id: 1, title: "JS", body: "Description"}} />
     </div>
   );
 }
 
 export default App;
-//npm start
