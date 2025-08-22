@@ -1,0 +1,13 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 20px; position: relative; }
+nav { display: flex; margin-bottom: 20px; }
+nav a { margin-right: 15px; padding: 5px; text-decoration: none; color: #333; }
+nav a.active { font-weight: bold; border-bottom: 2px solid #333; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #f2f2f2; }
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

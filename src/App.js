@@ -1,15 +1,16 @@
 import React from "react";
-import Counter from "./components/Counter";
-import ClassCounter from "./components/ClassCounter";
 import './styles/App.css';
-import PostItem from "./components/PostItem";
+import AddBtn from "./components/UI/button/AddBtn";
+import MyInput from "./components/UI/button/MyInput";
 
 function App() {
     return (
-    <div className="App">
-        <PostItem post={{id: 1, title: "JS", body: "Description"}} />
-    </div>
-  );
+        <form>
+            <MyInput type="email" id="email" placeholder="Email" required/>
+            <MyInput type="password" id="password" placeholder="Password" required/>
+            <AddBtn>Войти</AddBtn>
+        </form>
+    );
 }
 
 export default App;
