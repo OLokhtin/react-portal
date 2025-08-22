@@ -1,4 +1,4 @@
-.addBtn {
+.greenBtn {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -7,4 +7,4 @@
     cursor: pointer;
     margin-bottom: 15px;
 }
-.addBtn:hover { background-color: #45a049; }
+.greenBtn:hover { background-color: #45a049; }
