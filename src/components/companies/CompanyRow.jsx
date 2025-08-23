@@ -1,7 +1,6 @@
-// CompanyRow.jsx
 import React from 'react';
 
-const CompanyRow = ({ company }) => {
+const CompanyRow = ({company}) => {
     return (
         <tr>
             <td>{company.company_id}</td>

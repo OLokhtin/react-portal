@@ -1,4 +1,3 @@
-// CompaniesPage.jsx
 import React, { useState, useEffect } from 'react';
 import CompaniesTable from './CompaniesTable';
 import './CompaniesPage.css';

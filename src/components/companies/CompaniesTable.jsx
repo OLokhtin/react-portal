@@ -1,9 +1,8 @@
-// CompaniesTable.jsx
 import React from 'react';
 import CompanyRow from './CompanyRow';
 import './CompaniesTable.css';
 
-const CompaniesTable = ({ companies }) => {
+const CompaniesTable = ({companies}) => {
     if (!companies || companies.length === 0) {
         return null;
     }
