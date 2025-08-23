@@ -1,16 +1,10 @@
 import React from "react";
-import './styles/App.css';
-import GreenBtn from "./components/UI/button/GreenBtn";
-import MyInput from "./components/UI/button/MyInput";
+import CompaniesPage from "./components/table/CompaniesPage";
 
 function App() {
     return (
         <div className="App">
-            <form>
-                <MyInput type="email" id="email" placeholder="Email" required/>
-                <MyInput type="password" id="password" placeholder="Password" required/>
-                <GreenBtn>Войти</GreenBtn>
-            </form>
+            <CompaniesPage />
         </div>
     );
 }
