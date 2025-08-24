@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CompaniesPage.css';
 import CompaniesTable from './CompaniesTable';
-import CompaniesPanel from "./CompaniesPanel";
+import AdministrationPanel from "../navigation/AdministrationPanel";
 import GreenBtn from "../button/GreenBtn";
 import CompanyModal from "./CompanyModal";
 
@@ -56,7 +56,7 @@ const CompaniesPage = () => {
         <div className="companies-page">
             <h1>Мои компании</h1>
             <div className="header-container">
-                <CompaniesPanel></CompaniesPanel>
+                <AdministrationPanel />
                 <GreenBtn onClick={handleOpenModal}>Добавить компанию</GreenBtn>
             </div>
             <CompaniesTable companies={companies}/>

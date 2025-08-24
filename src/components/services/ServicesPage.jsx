@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ServicesPage.css';
 import ServicesTable from './ServicesTable';
-import ServicesPanel from "./ServicesPanel";
 import GreenBtn from "../button/GreenBtn";
 import ServiceModal from "./ServiceModal";
+import AdministrationPanel from "../navigation/AdministrationPanel";
 
 const ServicesPage = () => {
     const [services, setServices] = useState([]);
@@ -56,7 +56,7 @@ const ServicesPage = () => {
         <div className="services-page">
             <h1>Мои сервисы</h1>
             <div className="header-container">
-                <ServicesPanel></ServicesPanel>
+                <AdministrationPanel />
                 <GreenBtn onClick={handleOpenModal}>Добавить сервис</GreenBtn>
             </div>
             <ServicesTable services={services}/>
