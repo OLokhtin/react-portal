@@ -10,6 +10,7 @@
     align-items: center;
     z-index: 1000;
 }
+
 .modal-content {
     background-color: white;
     padding: 20px;
@@ -17,9 +18,11 @@
     width: 400px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 .form-group {
     margin-bottom: 15px;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
@@ -28,9 +31,8 @@ label {
 
 .modal-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .error-message {
