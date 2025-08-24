@@ -1,12 +1,15 @@
-// LoginPage.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
-const LoginPage = () => {
+const LoginPage = ({ onLoginSuccess }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -14,12 +17,38 @@ const LoginPage = () => {
             ...prev,
             [name]: value
         }));
+        if (error) setError('');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Данные для авторизации:', formData);
-        // Здесь будет логика авторизации
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await fetch('http://localhost:8000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `Ошибка авторизации: ${response.status}`);
+            }
+
+            // Авторизация успешна
+            onLoginSuccess();
+            navigate('/companies');
+
+        } catch (err) {
+            setError(err.message || 'Произошла ошибка при авторизации');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -29,6 +58,12 @@ const LoginPage = () => {
                     <h1>Авторизация</h1>
                     <p>Введите ваши учетные данные для входа</p>
                 </div>
+
+                {error && (
+                    <div className="error-message">
+                        {error}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-group">
@@ -41,6 +76,7 @@ const LoginPage = () => {
                             onChange={handleInputChange}
                             required
                             placeholder="Введите ваш email"
+                            disabled={loading}
                         />
                     </div>
 
@@ -54,11 +90,16 @@ const LoginPage = () => {
                             onChange={handleInputChange}
                             required
                             placeholder="Введите ваш пароль"
+                            disabled={loading}
                         />
                     </div>
 
-                    <button type="submit" className="login-btn">
-                        Войти
+                    <button
+                        type="submit"
+                        className="login-btn"
+                        disabled={loading}
+                    >
+                        {loading ? 'Вход...' : 'Войти'}
                     </button>
                 </form>
             </div>
