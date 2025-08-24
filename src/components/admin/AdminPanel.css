@@ -36,16 +36,3 @@
     color: #45a049;
     background-color: white;
 }
-
-@media (max-width: 768px) {
-    .panel-container {
-        padding: 0 10px;
-    }
-
-    .panel-tab {
-        padding: 12px 16px;
-        font-size: 14px;
-        flex: 1;
-        text-align: center;
-    }
-}

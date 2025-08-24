@@ -109,18 +109,3 @@
     transform: none !important;
     box-shadow: none !important;
 }
-
-/* Адаптивность */
-@media (max-width: 480px) {
-    .login-container {
-        padding: 30px 20px;
-    }
-
-    .login-header h1 {
-        font-size: 24px;
-    }
-
-    .login-header p {
-        font-size: 14px;
-    }
-}
