@@ -1,7 +1,8 @@
 import React from "react";
+import './styles/App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CompaniesPage from "./components/companies/CompaniesPage";
-import ServicesPage from "./components/services/ServicesPage";
+import CompaniesPage from "./components/admin/companies/CompaniesPage";
+import ServicesPage from "./components/admin/services/ServicesPage";
 
 function App() {
     return (

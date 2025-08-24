@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ServiceRow = ({service}) => {
+const ServicesRow = ({service}) => {
     return (
         <tr>
             <td>{service.service_id}</td>
@@ -13,4 +13,4 @@ const ServiceRow = ({service}) => {
     );
 };
 
-export default ServiceRow;
+export default ServicesRow;

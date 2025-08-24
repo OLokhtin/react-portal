@@ -1,10 +1,10 @@
 import React from 'react';
-import './CompanyModal.css'
-import Input from "../input/Input";
-import RedBtn from "../button/RedBtn";
-import GreenBtn from "../button/GreenBtn";
+import '../AdminModal.css'
+import Input from "../../input/Input";
+import RedBtn from "../../button/RedBtn";
+import GreenBtn from "../../button/GreenBtn";
 
-const CompanyModal = ({isOpen, onClose}) => {
+const CompaniesModal = ({isOpen, onClose}) => {
 
     if (!isOpen) return null;
 
@@ -44,4 +44,4 @@ const CompanyModal = ({isOpen, onClose}) => {
     );
 };
 
-export default CompanyModal;
+export default CompaniesModal;

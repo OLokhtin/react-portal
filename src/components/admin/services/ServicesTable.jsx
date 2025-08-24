@@ -1,6 +1,6 @@
 import React from 'react';
-import ServiceRow from './ServiceRow';
-import './ServicesTable.css';
+import ServicesRow from './ServicesRow';
+import '../AdminTable.css';
 
 const ServicesTable = ({services}) => {
     if (!services || services.length === 0) {
@@ -8,7 +8,7 @@ const ServicesTable = ({services}) => {
     }
 
     return (
-        <div className="services-table">
+        <div className="admin-table">
             <table>
                 <thead>
                 <tr>
@@ -22,7 +22,7 @@ const ServicesTable = ({services}) => {
                 </thead>
                 <tbody>
                 {services.map(service => (
-                    <ServiceRow key={service.service_id} service={service} />
+                    <ServicesRow key={service.service_id} service={service} />
                 ))}
                 </tbody>
             </table>

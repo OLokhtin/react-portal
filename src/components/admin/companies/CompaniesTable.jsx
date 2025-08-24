@@ -1,6 +1,6 @@
 import React from 'react';
-import CompanyRow from './CompanyRow';
-import './CompaniesTable.css';
+import CompaniesRow from './CompaniesRow';
+import '../AdminTable.css';
 
 const CompaniesTable = ({companies}) => {
     if (!companies || companies.length === 0) {
@@ -8,7 +8,7 @@ const CompaniesTable = ({companies}) => {
     }
 
     return (
-        <div className="companies-table">
+        <div className="admin-table">
             <table>
                 <thead>
                 <tr>
@@ -20,7 +20,7 @@ const CompaniesTable = ({companies}) => {
                 </thead>
                 <tbody>
                 {companies.map(company => (
-                    <CompanyRow key={company.company_id} company={company} />
+                    <CompaniesRow key={company.company_id} company={company} />
                 ))}
                 </tbody>
             </table>

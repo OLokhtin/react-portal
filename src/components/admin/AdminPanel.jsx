@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './AdministrationPanel.css';
+import './AdminPanel.css';
 
-const AdministrationPanel = () => {
+const AdminPanel = () => {
     const location = useLocation();
 
     return (
-        <nav className="administration-panel">
+        <nav className="admin-panel">
             <div className="panel-container">
                 <Link
                     to="/companies"
@@ -25,4 +25,4 @@ const AdministrationPanel = () => {
     );
 };
 
-export default AdministrationPanel;
+export default AdminPanel;

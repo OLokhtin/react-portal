@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import './CompaniesPage.css';
-import CompaniesTable from './CompaniesTable';
-import AdministrationPanel from "../navigation/AdministrationPanel";
-import GreenBtn from "../button/GreenBtn";
-import CompanyModal from "./CompanyModal";
+import '../AdminPage.css';
+import ServicesTable from './ServicesTable';
+import GreenBtn from "../../button/GreenBtn";
+import ServicesModal from "./ServicesModal";
+import AdminPanel from "../AdminPanel";
 
-const CompaniesPage = () => {
-    const [companies, setCompanies] = useState([]);
+const ServicesPage = () => {
+    const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        fetchCompanies();
+        fetchServices();
     }, []);
 
-    const fetchCompanies = async () => {
+    const fetchServices = async () => {
         try {
             setLoading(true);
             setError(null);
 
-            const response = await fetch('http://localhost:8000/api/companies');
+            const response = await fetch('http://localhost:8000/api/services');
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
-            setCompanies(data);
+            setServices(data);
         } catch (err) {
             setError(err.message);
-            setCompanies([]);
+            setServices([]);
         } finally {
             setLoading(false);
         }
@@ -53,16 +53,16 @@ const CompaniesPage = () => {
     }
 
     return (
-        <div className="companies-page">
-            <h1>Мои компании</h1>
+        <div className="admin-page">
+            <h1>Мои сервисы</h1>
             <div className="header-container">
-                <AdministrationPanel />
-                <GreenBtn onClick={handleOpenModal}>Добавить компанию</GreenBtn>
+                <AdminPanel />
+                <GreenBtn onClick={handleOpenModal}>Добавить сервис</GreenBtn>
             </div>
-            <CompaniesTable companies={companies}/>
-            <CompanyModal isOpen={isModalOpen} onClose={handleCloseModal}></CompanyModal>
+            <ServicesTable services={services}/>
+            <ServicesModal isOpen={isModalOpen} onClose={handleCloseModal}></ServicesModal>
         </div>
     );
 };
 
-export default CompaniesPage;
+export default ServicesPage;

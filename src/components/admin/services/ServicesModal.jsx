@@ -1,10 +1,10 @@
 import React from 'react';
-import './ServiceModal.css'
-import Input from "../input/Input";
-import RedBtn from "../button/RedBtn";
-import GreenBtn from "../button/GreenBtn";
+import '../AdminModal.css'
+import Input from "../../input/Input";
+import RedBtn from "../../button/RedBtn";
+import GreenBtn from "../../button/GreenBtn";
 
-const ServiceModal = ({isOpen, onClose}) => {
+const ServicesModal = ({isOpen, onClose}) => {
 
     if (!isOpen) return null;
 
@@ -53,4 +53,4 @@ const ServiceModal = ({isOpen, onClose}) => {
     );
 };
 
-export default ServiceModal;
+export default ServicesModal;

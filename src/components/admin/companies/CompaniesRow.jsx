@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CompanyRow = ({company}) => {
+const CompaniesRow = ({company}) => {
     return (
         <tr>
             <td>{company.company_id}</td>
@@ -11,4 +11,4 @@ const CompanyRow = ({company}) => {
     );
 };
 
-export default CompanyRow;
+export default CompaniesRow;
