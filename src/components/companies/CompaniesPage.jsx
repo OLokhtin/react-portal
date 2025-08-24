@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import CompaniesTable from './CompaniesTable';
 import './CompaniesPage.css';
+import CompaniesTable from './CompaniesTable';
+import CompaniesPanel from "./CompaniesPanel";
+import GreenBtn from "../button/GreenBtn";
+import CompanyModal from "./CompanyModal";
 
 const CompaniesPage = () => {
     const [companies, setCompanies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetchCompanies();
@@ -32,6 +36,14 @@ const CompaniesPage = () => {
         }
     };
 
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     if (loading) {
         return <div className="loading">Загрузка...</div>;
     }
@@ -43,7 +55,12 @@ const CompaniesPage = () => {
     return (
         <div className="companies-page">
             <h1>Мои компании</h1>
-            <CompaniesTable companies={companies} />
+            <div className="header-container">
+                <CompaniesPanel></CompaniesPanel>
+                <GreenBtn onClick={handleOpenModal}>Добавить компанию</GreenBtn>
+            </div>
+            <CompaniesTable companies={companies}/>
+            <CompanyModal isOpen={isModalOpen} onClose={handleCloseModal}></CompanyModal>
         </div>
     );
 };
