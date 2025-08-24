@@ -36,6 +36,22 @@ const CompaniesPage = () => {
         }
     };
 
+    const handleSaveCompany = async (companyData) => {
+        const response = await fetch('http://localhost:8000/api/companies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(companyData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Ошибка при создании компании');
+        }
+
+        fetchCompanies();
+    };
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -60,7 +76,10 @@ const CompaniesPage = () => {
                 <GreenBtn onClick={handleOpenModal}>Добавить компанию</GreenBtn>
             </div>
             <CompaniesTable companies={companies}/>
-            <CompaniesModal isOpen={isModalOpen} onClose={handleCloseModal}></CompaniesModal>
+            <CompaniesModal isOpen={isModalOpen}
+                            onClose={handleCloseModal}
+                            onSave={handleSaveCompany}
+            />
         </div>
     );
 };
