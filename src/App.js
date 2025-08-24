@@ -1,7 +1,6 @@
 import React from "react";
-import CompaniesTable from "./components/companies/CompaniesTable";
-import CompanyModal from "./components/companies/CompanyModal";
 import CompaniesPage from "./components/companies/CompaniesPage";
+import ServicesPage from "./components/services/ServicesPage";
 
 function App() {
     return (

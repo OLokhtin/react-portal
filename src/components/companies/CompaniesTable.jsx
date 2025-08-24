@@ -12,8 +12,8 @@ const CompaniesTable = ({companies}) => {
             <table>
                 <thead>
                 <tr>
-                    <th>ID компании</th>
-                    <th>Название компании</th>
+                    <th>ID</th>
+                    <th>Название</th>
                     <th>ИНН</th>
                     <th>Статус</th>
                 </tr>
