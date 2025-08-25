@@ -57,6 +57,27 @@ const ServicesPage = (setIsAuthenticated) => {
         fetchServices();
     }, [fetchServices]);
 
+    const handleSaveService = async (serviceData) => {
+        const response = await fetch('http://localhost:8000/api/services', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(serviceData),
+        });
+
+        if (!response.ok) {
+            if (response.status === 401) {
+                setIsAuthenticated(false);
+                return;
+            }
+            throw new Error('Ошибка при создании сервиса');
+        }
+
+        fetchServices();
+    };
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -89,6 +110,7 @@ const ServicesPage = (setIsAuthenticated) => {
             <ServicesModal
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
+                onSave={handleSaveService}
             />
         </div>
     );
