@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../AdminModal.css'
 import Input from "../../input/Input";
 import RedBtn from "../../button/RedBtn";
 import GreenBtn from "../../button/GreenBtn";
 
 const ServicesModal = ({isOpen, onClose, onSave}) => {
-
     const [formData, setFormData] = useState({
         service_name: '',
         company_id: 1,
@@ -15,21 +14,6 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
     });
 
     const [errors, setErrors] = useState({})
-
-    // Сброс формы при открытии/закрытии модального окна
-    useEffect(() => {
-        if (isOpen) {
-            setFormData({
-                service_name: '',
-                company_id: 1,
-                status: 1,
-                service_start_date: '',
-                service_end_date: '',
-                service_type: 1
-            });
-            setErrors({});
-        }
-    }, [isOpen]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -44,35 +28,10 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
         }
     };
 
-    const validateForm = () => {
-        const newErrors = {};
-
-        // Валидация company_id (≥ 1)
-        if (Number(formData.company_id) < 1) {
-            newErrors.company_id = 'Компания не существует';
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!validateForm()) {
-            return;
-        }
-
         try {
             await onSave(formData);
-            setFormData({
-                service_name: '',
-                company_id: 1,
-                status: 1,
-                service_start_date: '',
-                service_end_date: '',
-                service_type: 1
-            });
             onClose();
         } catch (error) {
             console.error('Ошибка при сохранении компании:', error);
@@ -83,7 +42,6 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
         setFormData({
             service_name: '',
             company_id: 1,
-            status: 1,
             service_start_date: '',
             service_end_date: '',
             service_type: 1
@@ -109,7 +67,6 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
                             onChange={handleInputChange}
                             required
                         />
-                        {errors.inn && <span className="error-message">{errors.inn}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="company_id">Компания</label>
@@ -122,7 +79,6 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
                             required
                             min="1"
                         />
-                        {errors.status && <span className="error-message">{errors.status}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="service_start_date">Дата начала</label>
@@ -134,7 +90,6 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
                             onChange={handleInputChange}
                             required
                         />
-                        {errors.status && <span className="error-message">{errors.status}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="service_end_date">Дата окончания</label>
@@ -146,7 +101,6 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
                             onChange={handleInputChange}
                             required
                         />
-                        {errors.status && <span className="error-message">{errors.status}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="service_type">Тип</label>
@@ -157,8 +111,8 @@ const ServicesModal = ({isOpen, onClose, onSave}) => {
                             value={formData.service_type}
                             onChange={handleInputChange}
                             required
+                            min="1"
                         />
-                        {errors.status && <span className="error-message">{errors.status}</span>}
                     </div>
                     <div className="modal-actions">
                         <RedBtn type="button" id="cancelBtn" onClick={handleClose}>Отмена</RedBtn>

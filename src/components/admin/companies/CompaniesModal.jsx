@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../AdminModal.css'
 import Input from "../../input/Input";
 import RedBtn from "../../button/RedBtn";
@@ -13,14 +13,6 @@ const CompaniesModal = ({isOpen, onClose, onSave}) => {
 
     const [errors, setErrors] = useState({})
 
-    // Сброс формы при открытии/закрытии модального окна
-    useEffect(() => {
-        if (isOpen) {
-            setFormData({ company_name: '', inn: '', status: 1 });
-            setErrors({});
-        }
-    }, [isOpen]);
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -34,33 +26,10 @@ const CompaniesModal = ({isOpen, onClose, onSave}) => {
         }
     };
 
-    const validateForm = () => {
-        const newErrors = {};
-
-        // Валидация ИНН (9-11 символов)
-        if (formData.inn.length < 9 || formData.inn.length > 11) {
-            newErrors.inn = 'ИНН должен содержать от 9 до 11 символов';
-        }
-
-        // Валидация статуса (≥ 1)
-        if (Number(formData.status) < 1) {
-            newErrors.status = 'Статус должен быть не менее 1';
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!validateForm()) {
-            return;
-        }
-
         try {
             await onSave(formData);
-            setFormData({ company_name: '', inn: '', status: 1 });
             onClose();
         } catch (error) {
             console.error('Ошибка при сохранении компании:', error);
@@ -105,7 +74,6 @@ const CompaniesModal = ({isOpen, onClose, onSave}) => {
                             pattern="[0-9]{9,11}"
                             title="ИНН должен содержать от 9 до 11 цифр"
                         />
-                        {errors.inn && <span className="error-message">{errors.inn}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="status">Статус</label>
@@ -118,7 +86,6 @@ const CompaniesModal = ({isOpen, onClose, onSave}) => {
                             required
                             min="1"
                         />
-                        {errors.status && <span className="error-message">{errors.status}</span>}
                     </div>
                     <div className="modal-actions">
                         <RedBtn type="button" id="cancelBtn" onClick={handleClose}>Отмена</RedBtn>
